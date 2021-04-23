@@ -1,5 +1,7 @@
 package com.github.com.pedroofilipe.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 
 @Entity
@@ -11,7 +13,25 @@ public class Produto {
     private String descricao;
     @Column(name = "precovenda")
     private float precoVenda;
-    private boolean inativo;
+    @OneToOne
+    private Categoria categoria;
+
+    public Produto(){
+
+    }
+
+    public Produto(int id, String descricao, float precoVenda, Categoria categoria){
+        this.id = id = id;
+        this.descricao = descricao;
+        this.precoVenda = precoVenda;
+        this.categoria = categoria;
+    }
+
+    public Produto(int id, String descricao, float precoVenda){
+        this.id = id = id;
+        this.descricao = descricao;
+        this.precoVenda = precoVenda;
+    }
 
     public int getId() {
         return id;
@@ -37,11 +57,11 @@ public class Produto {
         this.precoVenda = precoVenda;
     }
 
-    public boolean isInativo() {
-        return inativo;
+    public Categoria getCategoria() {
+        return categoria;
     }
 
-    public void setInativo(boolean inativo) {
-        this.inativo = inativo;
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
     }
 }

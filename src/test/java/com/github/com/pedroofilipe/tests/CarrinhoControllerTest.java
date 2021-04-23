@@ -3,7 +3,7 @@ package com.github.com.pedroofilipe.tests;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class CarrinhoTest {
+public class CarrinhoControllerTest {
 
 //    @Autowired
 //    CarrinhoController carrinhoController;

@@ -1,5 +1,7 @@
 package com.github.com.pedroofilipe.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -13,6 +15,7 @@ public class Venda {
     private float valorTotalDesconto;
     private float valorDesconto;
     @OneToMany(mappedBy = "venda")
+    @JsonManagedReference
     private List<ItemVenda> itemVendas;
 
     public int getId() {
