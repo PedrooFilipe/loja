@@ -15,9 +15,9 @@ public class Carrinho {
     @OneToMany(mappedBy = "carrinho")
     @JsonManagedReference
     private List<ItemCarrinho> itemCarrinhos;
-//    @ManyToMany(mappedBy = "carrinho")
-//    @JsonManagedReference
-//    private List<Promocao> promocoes;
+    @ManyToMany
+    @JoinTable(name="carrinho_has_promocao", joinColumns = {@JoinColumn(name="carrinho_id")}, inverseJoinColumns = {@JoinColumn(name="promocao_id")})
+    private List<Promocao> promocoes;
     @OneToOne
     private Usuario usuario;
 
@@ -37,14 +37,6 @@ public class Carrinho {
         this.itemCarrinhos = itemCarrinhos;
     }
 
-//    public List<Promocao> getPromocoes() {
-//        return promocoes;
-//    }
-//
-//    public void setPromocoes(List<Promocao> promocoes) {
-//        this.promocoes = promocoes;
-//    }
-
     public Usuario getUsuario() {
         return usuario;
     }
@@ -52,4 +44,23 @@ public class Carrinho {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
+
+    public float getValorTotal() {
+        return valorTotal;
+    }
+
+    public void setValorTotal(float valorTotal) {
+        this.valorTotal = valorTotal;
+    }
+
+	public List<Promocao> getPromocoes() {
+		return promocoes;
+	}
+
+	public void setPromocoes(List<Promocao> promocoes) {
+		this.promocoes = promocoes;
+	}
+    
+    
+    
 }

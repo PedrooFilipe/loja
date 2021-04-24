@@ -1,26 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="ALL" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="e651d2d9-8440-4291-8ffd-9c449f42a009" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/github/com/pedroofilipe/tests/ProdutoControllerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/loja.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/github/com/pedroofilipe/model/Carrinho.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/com/pedroofilipe/model/Carrinho.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/com/pedroofilipe/model/ItemVenda.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/com/pedroofilipe/model/ItemVenda.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/com/pedroofilipe/model/Produto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/com/pedroofilipe/model/Produto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/com/pedroofilipe/model/Venda.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/com/pedroofilipe/model/Venda.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/github/com/pedroofilipe/tests/CarrinhoTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/github/com/pedroofilipe/tests/CarrinhoControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/github/com/pedroofilipe/tests/ProdutoTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/github/com/pedroofilipe/model/Carrinho.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/github/com/pedroofilipe/model/Carrinho.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/github/com/pedroofilipe/model/ItemVenda.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/github/com/pedroofilipe/model/ItemVenda.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/github/com/pedroofilipe/model/Produto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/github/com/pedroofilipe/model/Produto.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/github/com/pedroofilipe/model/Venda.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/github/com/pedroofilipe/model/Venda.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/github/com/pedroofilipe/tests/CarrinhoTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/github/com/pedroofilipe/tests/ProdutoTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/com/pedroofilipe/services/CarrinhoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/com/pedroofilipe/services/CarrinhoService.java" afterDir="false" />
     </list>
-    <ignored path="$PROJECT_DIR$/out/" />
-    <ignored path="$PROJECT_DIR$/target/" />
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -28,106 +19,6 @@
   </component>
   <component name="DefaultGradleProjectSettings">
     <option name="isMigrated" value="true" />
-  </component>
-  <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/github/com/pedroofilipe/model/Categoria.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="460">
-              <caret line="23" column="21" lean-forward="true" selection-start-line="23" selection-start-column="21" selection-end-line="23" selection-end-column="21" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#361#362#0" expanded="true" />
-                <element signature="e#386#387#0" expanded="true" />
-                <element signature="e#419#420#0" expanded="true" />
-                <element signature="e#447#448#0" expanded="true" />
-                <element signature="e#483#484#0" expanded="true" />
-                <element signature="e#515#516#0" expanded="true" />
-                <element signature="e#565#566#0" expanded="true" />
-                <element signature="e#607#608#0" expanded="true" />
-                <element signature="e#712#713#0" expanded="true" />
-                <element signature="e#743#744#0" expanded="true" />
-                <element signature="e#793#794#0" expanded="true" />
-                <element signature="e#833#834#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/github/com/pedroofilipe/controllers/CategoriaController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="400">
-              <caret line="20" column="5" lean-forward="true" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/github/com/pedroofilipe/controllers/PromocaoController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="560">
-              <caret line="28" column="56" lean-forward="true" selection-start-line="28" selection-start-column="56" selection-end-line="28" selection-end-column="56" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/github/com/pedroofilipe/services/PromocaoService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="440">
-              <caret line="22" column="67" lean-forward="true" selection-start-line="22" selection-start-column="67" selection-end-line="22" selection-end-column="67" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/github/com/pedroofilipe/repositories/PromocaoRepository.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="9" column="32" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="32" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/github/com/pedroofilipe/services/CarrinhoService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="535">
-              <caret line="54" column="9" lean-forward="true" selection-start-line="54" selection-start-column="9" selection-end-line="54" selection-end-column="9" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/github/com/pedroofilipe/model/Carrinho.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="13" column="29" selection-start-line="13" selection-start-column="29" selection-end-line="13" selection-end-column="29" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -210,19 +101,13 @@
       </list>
     </option>
   </component>
-  <component name="MavenImportPreferences">
-    <option name="importingSettings">
-      <MavenImportingSettings>
-        <option name="importAutomatically" value="true" />
-      </MavenImportingSettings>
-    </option>
-  </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="1912" />
     <option name="y" value="-8" />
     <option name="width" value="1936" />
     <option name="height" value="1056" />
   </component>
+  <component name="ProjectId" id="1raUiWvoBSRhGJ0g0l8gHAuMl9e" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
@@ -278,6 +163,10 @@
       <pane id="Scope" />
     </panes>
   </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
     <property name="RequestMappingsPanelOrder0" value="0" />
     <property name="RequestMappingsPanelOrder1" value="1" />
@@ -286,7 +175,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../comercial_peg" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
   </component>
@@ -299,19 +188,7 @@
       <recent name="com.github.com.pedroofilipe.model" />
     </key>
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
-  <component name="RunManager" selected="Spring Boot.Loja">
+  <component name="RunManager" selected="JUnit.CupomDescontoTest.cadastrarProduto">
     <configuration name="CupomDescontoTest.cadastrarProduto" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
       <module name="loja" />
       <extension name="coverage">
@@ -387,7 +264,6 @@
     <list>
       <item itemvalue="JUnit.CupomDescontoTest.cadastrarProduto" />
       <item itemvalue="JUnit.ProdutoControllerTest.produtoListAll" />
-      <item itemvalue="Spring Boot.Loja" />
       <item itemvalue="JUnit.ProdutoControllerTest.produtoSave" />
       <item itemvalue="JUnit.ProdutoControllerTest.produtoUpdate" />
     </list>
@@ -399,6 +275,7 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -413,7 +290,7 @@
       <workItem from="1619020407760" duration="3929000" />
       <workItem from="1619045115848" duration="8096000" />
       <workItem from="1619105331939" duration="3195000" />
-      <workItem from="1619121285848" duration="12213000" />
+      <workItem from="1619121285848" duration="12281000" />
     </task>
     <servers />
   </component>
@@ -450,7 +327,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="30340000" />
+    <option name="totallyTimeSpent" value="30408000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />
@@ -493,6 +370,18 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="editorHistoryManager">
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot-autoconfigure/2.2.6.RELEASE/spring-boot-autoconfigure-2.2.6.RELEASE.jar!/org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration.class">
@@ -1012,7 +901,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/github/com/pedroofilipe/services/CarrinhoService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="535">
+        <state relative-caret-position="415">
           <caret line="54" column="9" lean-forward="true" selection-start-line="54" selection-start-column="9" selection-end-line="54" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />

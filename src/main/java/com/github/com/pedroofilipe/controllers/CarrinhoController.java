@@ -1,19 +1,19 @@
 package com.github.com.pedroofilipe.controllers;
 
-import com.github.com.pedroofilipe.model.Carrinho;
-import com.github.com.pedroofilipe.model.ItemCarrinho;
-import com.github.com.pedroofilipe.model.ItemVenda;
-import com.github.com.pedroofilipe.model.Venda;
-import com.github.com.pedroofilipe.repositories.CarrinhoRepository;
-import com.github.com.pedroofilipe.repositories.ItemVendaRepository;
-import com.github.com.pedroofilipe.repositories.VendaRepository;
-import com.github.com.pedroofilipe.services.CarrinhoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.github.com.pedroofilipe.model.Carrinho;
+import com.github.com.pedroofilipe.model.ItemCarrinho;
+import com.github.com.pedroofilipe.repositories.CarrinhoRepository;
+import com.github.com.pedroofilipe.services.CarrinhoService;
 
 @RestController
 @RequestMapping("/carrinhos")
@@ -34,10 +34,10 @@ public class CarrinhoController {
         return new ResponseEntity<>(carrinhoService.adicionarItem(itemCarrinho), HttpStatus.OK);
     }
 
-//    @GetMapping("/buscar")
-//    public ResponseEntity<?> buscar(Pageable pageable) {
-//        return new ResponseEntity<>(vendaRepository.findAll(pageable), HttpStatus.OK);
-//    }
+    @GetMapping("/buscar")
+    public ResponseEntity<?> buscar(Pageable pageable) {
+        return new ResponseEntity<>(carrinhoService.listarTodos(pageable), HttpStatus.OK);
+    }
 //
 //    @GetMapping("/retornar/{id}")
 //    public ResponseEntity<?> retornar(@PathVariable Integer id) {

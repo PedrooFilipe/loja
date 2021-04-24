@@ -24,8 +24,6 @@ public class Promocao {
     private TipoDesconto tipoDesconto;
     @OneToMany(mappedBy = "promocao")
     private List<Categoria> categorias;
-    @ManyToOne
-    private Carrinho carrinho;
 
     public Promocao(){
 
@@ -90,13 +88,5 @@ public class Promocao {
 
     public void setCategorias(List<Categoria> categorias) {
         this.categorias = categorias;
-    }
-
-    public Carrinho getCarrinho() {
-        return carrinho;
-    }
-
-    public void setCarrinho(Carrinho carrinho) {
-        this.carrinho = carrinho;
     }
 }
