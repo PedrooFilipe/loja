@@ -45,13 +45,19 @@ public class CarrinhoService {
 //        return carrinhoSalvo;
 //    }
     
-    public Page listarTodos(Pageable pageable){
+    public Page<CarrinhoDto> listarTodos(Pageable pageable){
     	Page<CarrinhoDto> carrinhos = carrinhoRepository.findAll(pageable).map(carrinho -> CarrinhoDto.toDto(carrinho));
     	return carrinhos;
     }
 
-    public Carrinho adicionarItem(ItemCarrinho itemCarrinho){
+    public CarrinhoDto adicionarItem(ItemCarrinho itemCarrinho){
         Produto produto = produtoRepository.findById(itemCarrinho.getProduto().getId()).get();
+//      Optional<Carrinho> carrinho = carrinhoRepository.findByUsuario_Id(usuario.getId());
+      Optional<Carrinho> carrinho = carrinhoRepository.findById(itemCarrinho.getCarrinho().getId());
+      List<Promocao> promocoes = carrinho.get().getPromocoes();
+        
+        
+        //verifica se existe alguma promoção para a categoria do produto e aplica o desconto caso existe alguma.
         Promocao promocao = promocaoRepository.findByCategorias_Id(produto.getCategoria().getId());
 
         if(promocao != null){
@@ -63,36 +69,37 @@ public class CarrinhoService {
                 itemCarrinho.setValorTotalDesconto(itemCarrinho.getValorTotalDesconto() - valorDesconto);
                 itemCarrinho.setValorDesconto(valorDesconto);
             }
+            promocoes.add(promocao);
         }
         
         itemCarrinhoRepository.save(itemCarrinho);
-
-        Optional<Carrinho> carrinho = carrinhoRepository.findById(itemCarrinho.getCarrinho().getId());
+        
         List<ItemCarrinho> itensCarrinho = carrinho.get().getItemCarrinhos();
         itensCarrinho.add(itemCarrinho);
 
-        carrinho.get().setItemCarrinhos(carrinho.get().getItemCarrinhos());
+        carrinho.get().setItemCarrinhos(itensCarrinho);
         carrinho.get().setValorTotal(carrinho.get().getValorTotal() + itemCarrinho.getValorTotalDesconto());
+        
+        
 
-        //verifica se existe alguma promoção cadastrada com o tipo carrinho, e aplicar o desconto caso exista alguma
+        //verifica se existe alguma promoção cadastrada com o tipo carrinho e aplica o desconto caso exista alguma
         promocao = new Promocao();
         promocao = promocaoRepository.findBytipoPromocao(TipoPromocao.CARRINHO);
         
         if(promocao != null) {
         	if(carrinho.get().getValorTotal() >= promocao.getValorMinimo()) {
+        		
         		if(promocao.getTipoDesconto() == TipoDesconto.VALOR){
                     carrinho.get().setValorTotal(carrinho.get().getValorTotal() - promocao.getValorDesconto());
                 }else {
                     carrinho.get().setValorTotal(carrinho.get().getValorTotal() - (carrinho.get().getValorTotal() * promocao.getValorDesconto()) / 100);
                 }
+        		promocoes.add(promocao);
         	}
-        	List<Promocao> promocoes = carrinho.get().getPromocoes();
-        	promocoes.add(promocao);
-        	
-        	carrinho.get().setPromocoes(promocoes);
         }
         
-        return carrinhoRepository.save(carrinho.get());
+        carrinho.get().setPromocoes(promocoes);
+        return CarrinhoDto.toDto(carrinhoRepository.save(carrinho.get()));
     }
 
     public Promocao removerItem(ItemCarrinho itemCarrinho){
