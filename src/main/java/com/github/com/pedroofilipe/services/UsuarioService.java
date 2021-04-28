@@ -1,29 +1,37 @@
 package com.github.com.pedroofilipe.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
+import com.github.com.pedroofilipe.dto.UsuarioDto;
+import com.github.com.pedroofilipe.model.Carrinho;
 import com.github.com.pedroofilipe.model.Usuario;
+import com.github.com.pedroofilipe.repositories.CarrinhoRepository;
 import com.github.com.pedroofilipe.repositories.UsuarioRepository;
 
 @Service
-public class UsuarioService {
+public class UsuarioService implements UserDetailsService{
 	
 	@Autowired
 	UsuarioRepository usuarioRepository;
+	@Autowired
+	CarrinhoRepository carrinhoRepository;
 	
-	
-	public Usuario autenticar(Usuario usuarioAutenticar) {
-		Usuario usuario = usuarioRepository.findByEmail(usuarioAutenticar.getEmail()).orElseThrow( () ->  new ResponseStatusException(HttpStatus.NOT_FOUND));
+	public UsuarioDto cadastrar(Usuario usuario) {
+		usuario = usuarioRepository.save(usuario);
+		carrinhoRepository.save(new Carrinho(usuario));
 		
-		if(usuarioAutenticar.getSenha().equals(usuario.getSenha())) {
-			usuario.setToken(TokenService.generateToken(usuario));
-			return usuario;
-		}else {
-			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
-		}
+		return UsuarioDto.toDto(usuario);
 	}
 
+	@Override
+	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+		Usuario usuario = usuarioRepository.findByEmail(email).orElseThrow(()-> new UsernameNotFoundException("Usuário e/ou senha não encontrados"));
+		
+		return User.builder().username(usuario.getEmail()).password(usuario.getSenha()).roles(usuario.getTipoUsuario().toString()).build();
+	}
 }

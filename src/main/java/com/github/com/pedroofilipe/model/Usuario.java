@@ -2,6 +2,8 @@ package com.github.com.pedroofilipe.model;
 
 import javax.persistence.*;
 
+import com.github.com.pedroofilipe.enums.TipoUsuario;
+
 @Entity
 public class Usuario {
 
@@ -13,7 +15,6 @@ public class Usuario {
     private String senha;
     private String cpf;
     private String token;
-    @OneToOne
     private TipoUsuario tipoUsuario;
 
     public int getId() {

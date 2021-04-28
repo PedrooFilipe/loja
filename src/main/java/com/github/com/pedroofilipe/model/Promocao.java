@@ -82,7 +82,7 @@ public class Promocao {
         this.valorMinimo = valorMinimo;
     }
 
-    public List<Categoria> getCategorias() {
+	public List<Categoria> getCategorias() {
         return categorias;
     }
 

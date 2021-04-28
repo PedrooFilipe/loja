@@ -12,6 +12,8 @@ public class Carrinho {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private float valorTotal;
+    @Column(name= "valoraplicadopromocaocarrinho")
+    private float valorAplicadoPromocaoCarrinho;
     @OneToMany(mappedBy = "carrinho")
     @JsonManagedReference
     private List<ItemCarrinho> itemCarrinhos;
@@ -20,6 +22,15 @@ public class Carrinho {
     private List<Promocao> promocoes;
     @OneToOne
     private Usuario usuario;
+    
+    public Carrinho() {
+    	
+    }
+    
+    public Carrinho(Usuario usuario) {
+    	this.usuario = usuario;
+    }
+    
 
     public int getId() {
         return id;
@@ -53,14 +64,19 @@ public class Carrinho {
         this.valorTotal = valorTotal;
     }
 
+	public float getValorAplicadoPromocaoCarrinho() {
+		return valorAplicadoPromocaoCarrinho;
+	}
+
+	public void setValorAplicadoPromocaoCarrinho(float valorAplicadoPromocaoCarrinho) {
+		this.valorAplicadoPromocaoCarrinho = valorAplicadoPromocaoCarrinho;
+	}
+
 	public List<Promocao> getPromocoes() {
 		return promocoes;
 	}
 
 	public void setPromocoes(List<Promocao> promocoes) {
 		this.promocoes = promocoes;
-	}
-    
-    
-    
+	}    
 }
