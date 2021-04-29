@@ -13,9 +13,19 @@ public class Usuario {
     private String nome;
     private String email;
     private String senha;
-    private String cpf;
-    private String token;
     private TipoUsuario tipoUsuario;
+    
+    public Usuario() {
+    	
+    }
+    
+    public Usuario(int id, String nome, String email, String senha, TipoUsuario tipoUsuario) {
+    	this.id = id;
+    	this.nome = nome;
+    	this.email = email;
+    	this.senha = senha;
+    	this.tipoUsuario = tipoUsuario;
+    }
 
     public int getId() {
         return id;
@@ -39,22 +49,6 @@ public class Usuario {
 
     public void setSenha(String senha) {
         this.senha = senha;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-    
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
     }
 
     public TipoUsuario getTipoUsuario() {

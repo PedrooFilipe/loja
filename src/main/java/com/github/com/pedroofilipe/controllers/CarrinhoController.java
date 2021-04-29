@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.github.com.pedroofilipe.dto.CarrinhoDto;
 import com.github.com.pedroofilipe.model.ItemCarrinho;
 import com.github.com.pedroofilipe.repositories.CarrinhoRepository;
 import com.github.com.pedroofilipe.services.CarrinhoService;
@@ -28,12 +29,12 @@ public class CarrinhoController {
 
     @PostMapping("/adicionar-item")
     public ResponseEntity<?> adicionarItem(@RequestBody ItemCarrinho itemCarrinho, @RequestParam int usuarioId) {
-        return new ResponseEntity<>(carrinhoService.adicionarItem(itemCarrinho, usuarioId), HttpStatus.OK);
+        return new ResponseEntity<>(CarrinhoDto.toDto(carrinhoService.adicionarItem(itemCarrinho, usuarioId)), HttpStatus.OK);
     }
     
     @PostMapping("/remover-item")
-    public ResponseEntity<?> removerItem(@RequestBody ItemCarrinho itemCarrinho, @RequestParam int usuarioId) {
-        return new ResponseEntity<>(carrinhoService.adicionarItem(itemCarrinho, usuarioId), HttpStatus.OK);
+    public ResponseEntity<?> removerItem(@RequestBody ItemCarrinho itemCarrinho) {
+        return new ResponseEntity<>(CarrinhoDto.toDto(carrinhoService.removerItem(itemCarrinho)), HttpStatus.OK);
     }
     
     @GetMapping("/buscar")

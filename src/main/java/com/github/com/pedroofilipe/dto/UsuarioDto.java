@@ -11,14 +11,14 @@ public class UsuarioDto {
 		
 	}
 	
-	public UsuarioDto(String nome, String email, String token) {
+	public UsuarioDto(String nome, String email) {
 		this.nome = nome;
 		this.email = email;
 	}
 
 	
 	public static UsuarioDto toDto(Usuario usuario){
-		return new UsuarioDto(usuario.getNome(), usuario.getEmail(), usuario.getToken());
+		return new UsuarioDto(usuario.getNome(), usuario.getEmail());
 	}
 
 	public String getNome() {

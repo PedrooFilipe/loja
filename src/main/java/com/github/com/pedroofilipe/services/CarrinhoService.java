@@ -20,7 +20,6 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class CarrinhoService {
@@ -39,7 +38,7 @@ public class CarrinhoService {
     	return carrinhos;
     }
 
-    public CarrinhoDto adicionarItem(ItemCarrinho itemCarrinho, int usuarioId){
+    public Carrinho adicionarItem(ItemCarrinho itemCarrinho, int usuarioId){
       Produto produto = produtoRepository.findById(itemCarrinho.getProduto().getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
       Carrinho carrinho = carrinhoRepository.findByUsuario_Id(usuarioId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
       List<Promocao> promocoes = carrinho.getPromocoes();
@@ -99,13 +98,13 @@ public class CarrinhoService {
         }
         
         carrinho.setPromocoes(promocoes);
-        return CarrinhoDto.toDto(carrinhoRepository.save(carrinho));
+        return carrinhoRepository.save(carrinho);
     } 
 
-    public void removerItem(ItemCarrinho itemCarrinho){
+    public Carrinho removerItem(ItemCarrinho itemCarrinho){
     	
     	itemCarrinho = itemCarrinhoRepository.findById(itemCarrinho.getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-    	Carrinho carrinho = carrinhoRepository.findByUsuario_Id(itemCarrinho.getCarrinho().getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+    	Carrinho carrinho = carrinhoRepository.findByUsuario_Id(itemCarrinho.getCarrinho().getUsuario().getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     	List<Promocao> promocoesParaExclusao = new ArrayList<Promocao>();
     	Promocao promocao = new Promocao();
     	
@@ -150,6 +149,6 @@ public class CarrinhoService {
     	itemCarrinhoRepository.delete(itemCarrinho);
     	carrinho.getItemCarrinhos().remove(itemCarrinho);
     	carrinho.setPromocoes(promocoesCarrinho);
-    	carrinhoRepository.save(carrinho);
+    	return carrinhoRepository.save(carrinho);
     }
 }

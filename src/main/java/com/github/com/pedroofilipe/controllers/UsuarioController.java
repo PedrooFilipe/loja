@@ -1,5 +1,7 @@
 package com.github.com.pedroofilipe.controllers;
 
+import com.github.com.pedroofilipe.dto.CarrinhoDto;
+import com.github.com.pedroofilipe.dto.UsuarioDto;
 import com.github.com.pedroofilipe.model.Usuario;
 import com.github.com.pedroofilipe.repositories.UsuarioRepository;
 import com.github.com.pedroofilipe.services.UsuarioService;
@@ -21,7 +23,7 @@ public class UsuarioController {
 
     @PostMapping("/cadastrar")
     public ResponseEntity<?> cadastrar(@RequestBody Usuario usuario) {
-        return new ResponseEntity<>(usuarioService.cadastrar(usuario), HttpStatus.OK);
+        return new ResponseEntity<>(UsuarioDto.toDto(usuarioService.cadastrar(usuario)), HttpStatus.CREATED);
     }
     
     @GetMapping("/buscar")
