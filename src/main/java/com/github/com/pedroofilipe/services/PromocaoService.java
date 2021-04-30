@@ -6,9 +6,9 @@ import com.github.com.pedroofilipe.model.Promocao;
 import com.github.com.pedroofilipe.repositories.CategoriaRepository;
 import com.github.com.pedroofilipe.repositories.PromocaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
+import org.springframework.web.server.ResponseStatusException;
 
 @Service
 public class PromocaoService {
@@ -20,16 +20,15 @@ public class PromocaoService {
 
     public Promocao cadastrar(Promocao promocao){
 
-        Promocao promocaoSalva = promocaoRepository.save(promocao);
+    	promocao = promocaoRepository.save(promocao);
 
         if(promocao.getTipoPromocao() == TipoPromocao.PRODUTO){
             for(Categoria item : promocao.getCategorias()){
-                Optional<Categoria> categoria = categoriaRepository.findById(item.getId());
-                categoriaRepository.save(new Categoria(categoria.get().getId(), categoria.get().getDescricao(), promocaoSalva));
+                Categoria categoria = categoriaRepository.findById(item.getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+                categoriaRepository.save(new Categoria(categoria.getId(), categoria.getDescricao(), promocao));
             }
         }
 
-        return promocaoSalva;
+        return promocao;
     }
-
 }

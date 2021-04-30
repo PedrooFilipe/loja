@@ -107,6 +107,7 @@ public class CarrinhoService {
     	Carrinho carrinho = carrinhoRepository.findByUsuario_Id(itemCarrinho.getCarrinho().getUsuario().getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     	List<Promocao> promocoesParaExclusao = new ArrayList<Promocao>();
     	Promocao promocao = new Promocao();
+    	float valorParaSerRetiradoDoCarrinho = 0;
     	
     	//validação para saber se o carrinho tem alguma promoção por categoria do produto
     	if(itemCarrinho.getValorDesconto() > 0) {
@@ -114,10 +115,12 @@ public class CarrinhoService {
     		promocao = promocaoRepository.findByCategorias_Id(itemCarrinho.getProduto().getCategoria().getId());
     		promocoesParaExclusao.add(promocao);
     		
-    		carrinho.setValorTotal(carrinho.getValorTotal() - itemCarrinho.getValorTotalDesconto());
+//    		carrinho.setValorTotal(carrinho.getValorTotal() - itemCarrinho.getValorTotalDesconto());
+    		valorParaSerRetiradoDoCarrinho = carrinho.getValorTotal() - itemCarrinho.getValorTotalDesconto();
     		
     	}else {
-    		carrinho.setValorTotal(carrinho.getValorTotal() - itemCarrinho.getValorTotal());
+//    		carrinho.setValorTotal(carrinho.getValorTotal() - itemCarrinho.getValorTotal());
+    		valorParaSerRetiradoDoCarrinho = carrinho.getValorTotal() - itemCarrinho.getValorTotal();
     	}
     	
     	
@@ -128,7 +131,9 @@ public class CarrinhoService {
     		for(Promocao itemPromocao : promocoesCarrinho) {
         		if(itemPromocao.getTipoPromocao().equals(TipoPromocao.CARRINHO)) {
         			if(carrinho.getValorTotal() - itemCarrinho.getValorTotalDesconto() < itemPromocao.getValorMinimo()) {
-        				carrinho.setValorTotal((carrinho.getValorTotal() - itemCarrinho.getValorTotalDesconto()) + carrinho.getValorAplicadoPromocaoCarrinho());
+//        				carrinho.setValorTotal((carrinho.getValorTotal() - itemCarrinho.getValorTotalDesconto()) + carrinho.getValorAplicadoPromocaoCarrinho());
+        				valorParaSerRetiradoDoCarrinho = (carrinho.getValorTotal() - itemCarrinho.getValorTotalDesconto()) + carrinho.getValorAplicadoPromocaoCarrinho();
+        				carrinho.setValorAplicadoPromocaoCarrinho(0F);
         				
         				promocoesParaExclusao.add(itemPromocao);
         			}
@@ -145,6 +150,8 @@ public class CarrinhoService {
     			
     		}
     	}
+    	
+    	carrinho.setValorTotal(carrinho.getValorTotal() - valorParaSerRetiradoDoCarrinho);
     	
     	itemCarrinhoRepository.delete(itemCarrinho);
     	carrinho.getItemCarrinhos().remove(itemCarrinho);
