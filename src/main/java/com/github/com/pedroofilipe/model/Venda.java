@@ -1,6 +1,6 @@
 package com.github.com.pedroofilipe.model;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.github.com.pedroofilipe.enums.TipoPagamento;
 
 import javax.persistence.*;
 import java.util.List;
@@ -15,8 +15,10 @@ public class Venda {
     private float valorTotalDesconto;
     private float valorDesconto;
     @OneToMany(mappedBy = "venda")
-    @JsonManagedReference
     private List<ItemVenda> itemVendas;
+    @OneToOne
+    private Usuario usuario;
+    private TipoPagamento tipoPagamento;
 
     public int getId() {
         return id;
@@ -57,4 +59,20 @@ public class Venda {
     public void setItemVendas(List<ItemVenda> itemVendas) {
         this.itemVendas = itemVendas;
     }
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	public TipoPagamento getTipoPagamento() {
+		return tipoPagamento;
+	}
+
+	public void setTipoPagamento(TipoPagamento tipoPagamento) {
+		this.tipoPagamento = tipoPagamento;
+	}
 }

@@ -24,7 +24,7 @@ public class PromocaoService {
 
         if(promocao.getTipoPromocao() == TipoPromocao.PRODUTO){
             for(Categoria item : promocao.getCategorias()){
-                Categoria categoria = categoriaRepository.findById(item.getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+                Categoria categoria = categoriaRepository.findById(item.getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Categoria não encontrada!"));
                 categoriaRepository.save(new Categoria(categoria.getId(), categoria.getDescricao(), promocao));
             }
         }

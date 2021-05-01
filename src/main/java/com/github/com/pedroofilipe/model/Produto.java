@@ -1,7 +1,5 @@
 package com.github.com.pedroofilipe.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
 import javax.persistence.*;
 
 @Entity
@@ -21,16 +19,10 @@ public class Produto {
     }
 
     public Produto(int id, String descricao, float precoVenda, Categoria categoria){
-        this.id = id = id;
+        this.id = id;
         this.descricao = descricao;
         this.precoVenda = precoVenda;
         this.categoria = categoria;
-    }
-
-    public Produto(int id, String descricao, float precoVenda){
-        this.id = id = id;
-        this.descricao = descricao;
-        this.precoVenda = precoVenda;
     }
 
     public int getId() {

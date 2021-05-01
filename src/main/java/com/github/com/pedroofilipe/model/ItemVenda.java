@@ -1,7 +1,5 @@
 package com.github.com.pedroofilipe.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
 import javax.persistence.*;
 
 @Entity
@@ -16,7 +14,6 @@ public class ItemVenda {
     @Column(name = "valortotal")
     private float valorTotal;
     @ManyToOne
-    @JsonBackReference
     @JoinColumn(name = "venda_id", nullable = false)
     private Venda venda;
 
@@ -30,6 +27,12 @@ public class ItemVenda {
         this.quantidade = quantidade;
         this.valorTotal = valorTotal;
         this.venda = venda;
+    }
+    
+    public ItemVenda(Produto produto, float quantidade, float valorTotal){
+        this.produto = produto;
+        this.quantidade = quantidade;
+        this.valorTotal = valorTotal;
     }
 
     public int getId() {

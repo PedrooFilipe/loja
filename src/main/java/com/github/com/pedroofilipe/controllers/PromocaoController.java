@@ -10,7 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/promocoes")
+@RequestMapping("/promocoes")
 public class PromocaoController {
 
     @Autowired
@@ -18,8 +18,8 @@ public class PromocaoController {
     @Autowired
     private PromocaoService promocaoService;
 
-    @GetMapping("/listar")
-    private ResponseEntity<?> listar(Pageable pageable){
+    @GetMapping("/buscar")
+    private ResponseEntity<?> buscar(Pageable pageable){
         return new ResponseEntity<>(promocaoRepository.findAll(pageable), HttpStatus.OK);
     }
 

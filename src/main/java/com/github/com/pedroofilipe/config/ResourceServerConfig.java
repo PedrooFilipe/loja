@@ -12,15 +12,23 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-		.antMatchers("/api/usuarios/cadastrar").permitAll()
-		.antMatchers("/api/**").hasRole("ADMINISTRADOR")
+		.antMatchers("/usuarios/cadastrar").permitAll()
 		.antMatchers(
-			"/api/produtos/buscar", 
-			"/api/carrinhos/adicionar-item",
-			"/api/carrinhos/remover-item",
-			"/api/vendas/cadastrar",
-			"/api/vendas/buscar-por-cliente")
-		.authenticated();
+			"/produtos/buscar",
+			"/produtos/retornar",
+			"/carrinhos/adicionar-item",
+			"/carrinhos/remover-item",
+			"/vendas/cadastrar",
+			"/vendas/buscar-por-cliente",
+			"/carrinhos/buscar-por-usuario/**")
+		.authenticated()
+		.antMatchers(
+				"/carrinho/buscar",
+				"/produtos/cadastrar",
+				"/promocoes/cadastrar",
+				"/promocoes/buscar",
+				"/promocoes/cadastrar"
+				).hasRole("ADMINISTRADOR");
 	}
 	
 }

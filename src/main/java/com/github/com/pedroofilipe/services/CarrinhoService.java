@@ -34,13 +34,13 @@ public class CarrinhoService {
     private PromocaoRepository promocaoRepository;
     
     public Page<CarrinhoDto> listarTodos(Pageable pageable){
-    	Page<CarrinhoDto> carrinhos = carrinhoRepository.findAll(pageable).map(carrinho -> CarrinhoDto.toDto(carrinho));
-    	return carrinhos;
+    	return carrinhoRepository.findAll(pageable).map(carrinho -> CarrinhoDto.toDto(carrinho));
     }
 
+    
     public Carrinho adicionarItem(ItemCarrinho itemCarrinho, int usuarioId){
-      Produto produto = produtoRepository.findById(itemCarrinho.getProduto().getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-      Carrinho carrinho = carrinhoRepository.findByUsuario_Id(usuarioId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+      Produto produto = produtoRepository.findById(itemCarrinho.getProduto().getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Produto não encontrado"));
+      Carrinho carrinho = carrinhoRepository.findByUsuario_Id(usuarioId).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Carrinho não encontrado para o usuário informado!"));
       List<Promocao> promocoes = carrinho.getPromocoes();
         
         
@@ -102,12 +102,11 @@ public class CarrinhoService {
     } 
 
     public Carrinho removerItem(ItemCarrinho itemCarrinho){
-    	
-    	itemCarrinho = itemCarrinhoRepository.findById(itemCarrinho.getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-    	Carrinho carrinho = carrinhoRepository.findByUsuario_Id(itemCarrinho.getCarrinho().getUsuario().getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+    	Carrinho carrinho = carrinhoRepository.findByUsuario_Id(itemCarrinho.getCarrinho().getUsuario().getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Carrinho não encontrado para o usuário informado!"));
+    	itemCarrinho = itemCarrinhoRepository.findById(itemCarrinho.getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Carrinho não encontrado"));
     	List<Promocao> promocoesParaExclusao = new ArrayList<Promocao>();
     	Promocao promocao = new Promocao();
-    	float valorParaSerRetiradoDoCarrinho = 0;
+    	float valorTotalCarrinho = 0;
     	
     	//validação para saber se o carrinho tem alguma promoção por categoria do produto
     	if(itemCarrinho.getValorDesconto() > 0) {
@@ -115,12 +114,10 @@ public class CarrinhoService {
     		promocao = promocaoRepository.findByCategorias_Id(itemCarrinho.getProduto().getCategoria().getId());
     		promocoesParaExclusao.add(promocao);
     		
-//    		carrinho.setValorTotal(carrinho.getValorTotal() - itemCarrinho.getValorTotalDesconto());
-    		valorParaSerRetiradoDoCarrinho = carrinho.getValorTotal() - itemCarrinho.getValorTotalDesconto();
+    		valorTotalCarrinho = carrinho.getValorTotal() - itemCarrinho.getValorTotalDesconto();
     		
     	}else {
-//    		carrinho.setValorTotal(carrinho.getValorTotal() - itemCarrinho.getValorTotal());
-    		valorParaSerRetiradoDoCarrinho = carrinho.getValorTotal() - itemCarrinho.getValorTotal();
+    		valorTotalCarrinho = carrinho.getValorTotal() - itemCarrinho.getValorTotal();
     	}
     	
     	
@@ -131,8 +128,7 @@ public class CarrinhoService {
     		for(Promocao itemPromocao : promocoesCarrinho) {
         		if(itemPromocao.getTipoPromocao().equals(TipoPromocao.CARRINHO)) {
         			if(carrinho.getValorTotal() - itemCarrinho.getValorTotalDesconto() < itemPromocao.getValorMinimo()) {
-//        				carrinho.setValorTotal((carrinho.getValorTotal() - itemCarrinho.getValorTotalDesconto()) + carrinho.getValorAplicadoPromocaoCarrinho());
-        				valorParaSerRetiradoDoCarrinho = (carrinho.getValorTotal() - itemCarrinho.getValorTotalDesconto()) + carrinho.getValorAplicadoPromocaoCarrinho();
+        				valorTotalCarrinho = (carrinho.getValorTotal() - itemCarrinho.getValorTotalDesconto()) + carrinho.getValorAplicadoPromocaoCarrinho();
         				carrinho.setValorAplicadoPromocaoCarrinho(0F);
         				
         				promocoesParaExclusao.add(itemPromocao);
@@ -151,7 +147,7 @@ public class CarrinhoService {
     		}
     	}
     	
-    	carrinho.setValorTotal(carrinho.getValorTotal() - valorParaSerRetiradoDoCarrinho);
+    	carrinho.setValorTotal(valorTotalCarrinho);
     	
     	itemCarrinhoRepository.delete(itemCarrinho);
     	carrinho.getItemCarrinhos().remove(itemCarrinho);

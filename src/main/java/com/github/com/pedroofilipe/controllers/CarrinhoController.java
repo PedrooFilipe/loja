@@ -19,7 +19,7 @@ import com.github.com.pedroofilipe.repositories.CarrinhoRepository;
 import com.github.com.pedroofilipe.services.CarrinhoService;
 
 @RestController
-@RequestMapping("/api/carrinhos")
+@RequestMapping("/carrinhos")
 public class CarrinhoController {
 
     @Autowired
@@ -42,7 +42,7 @@ public class CarrinhoController {
         return new ResponseEntity<>(carrinhoService.listarTodos(pageable), HttpStatus.OK);
     }
 
-    @GetMapping("/buscar/{idUsuario}")
+    @GetMapping("/buscar-por-usuario/{idUsuario}")
     public ResponseEntity<?> buscarPorUsuario(@PathVariable int idUsuario) {
         return new ResponseEntity<>(carrinhoRepository.findByUsuario_Id(idUsuario).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND)), HttpStatus.OK);
     }
