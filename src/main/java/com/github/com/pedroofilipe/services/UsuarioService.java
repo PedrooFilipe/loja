@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.github.com.pedroofilipe.dto.UsuarioDto;
@@ -18,12 +19,17 @@ import com.github.com.pedroofilipe.repositories.UsuarioRepository;
 @Service
 public class UsuarioService implements UserDetailsService{
 	
-	@Autowired
 	UsuarioRepository usuarioRepository;
-	@Autowired
 	CarrinhoRepository carrinhoRepository;
 	
+	@Autowired
+	public UsuarioService(UsuarioRepository usuarioRepository, CarrinhoRepository carrinhoRepository) {
+		this.usuarioRepository = usuarioRepository;
+		this.carrinhoRepository = carrinhoRepository;
+	}
+	
 	public Usuario cadastrar(Usuario usuario) {
+		usuario.setSenha(new BCryptPasswordEncoder().encode(usuario.getSenha()));
 		usuario = usuarioRepository.save(usuario);
 		carrinhoRepository.save(new Carrinho(usuario));
 		

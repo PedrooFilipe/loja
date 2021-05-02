@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/vendas")
 public class VendaController {
 
-    VendaService vendaService;
+    private VendaService vendaService;
 
     @Autowired
     public VendaController(VendaService vendaService){

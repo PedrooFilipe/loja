@@ -12,20 +12,23 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/promocoes")
 public class PromocaoController {
+	
+	private PromocaoRepository promocaoRepository;
+	private PromocaoService promocaoService;
 
-    @Autowired
-    private PromocaoRepository promocaoRepository;
-    @Autowired
-    private PromocaoService promocaoService;
-
-    @GetMapping("/buscar")
-    private ResponseEntity<?> buscar(Pageable pageable){
-        return new ResponseEntity<>(promocaoRepository.findAll(pageable), HttpStatus.OK);
-    }
+	@Autowired
+	public PromocaoController(PromocaoRepository promocaoRepository, PromocaoService promocaoService) {
+		this.promocaoRepository = promocaoRepository;
+	    this.promocaoService = promocaoService;
+	}
 
     @PostMapping("/cadastrar")
     private ResponseEntity<Promocao> cadastrar(@RequestBody Promocao promocao){
-
-        return new ResponseEntity<>(promocaoService.cadastrar(promocao), HttpStatus.OK);
+        return new ResponseEntity<>(promocaoService.cadastrar(promocao), HttpStatus.CREATED);
+    }
+    
+    @GetMapping("/buscar")
+    private ResponseEntity<?> buscar(Pageable pageable){
+        return new ResponseEntity<>(promocaoRepository.findAll(pageable), HttpStatus.OK);
     }
 }

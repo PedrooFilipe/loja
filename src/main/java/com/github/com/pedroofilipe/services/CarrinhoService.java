@@ -24,25 +24,30 @@ import java.util.List;
 @Service
 public class CarrinhoService {
 
-    @Autowired
+   
     private CarrinhoRepository carrinhoRepository;
-    @Autowired
     private ItemCarrinhoRepository itemCarrinhoRepository;
-    @Autowired
     private ProdutoRepository produtoRepository;
-    @Autowired
     private PromocaoRepository promocaoRepository;
+    
+    @Autowired
+    public CarrinhoService(CarrinhoRepository carrinhoRepository, ItemCarrinhoRepository itemCarrinhoRepository, ProdutoRepository produtoRepository,PromocaoRepository promocaoRepository){
+    	this.carrinhoRepository = carrinhoRepository;
+        this.itemCarrinhoRepository = itemCarrinhoRepository;
+        this.produtoRepository = produtoRepository;
+        this.promocaoRepository = promocaoRepository;
+    }
     
     public Page<CarrinhoDto> listarTodos(Pageable pageable){
     	return carrinhoRepository.findAll(pageable).map(carrinho -> CarrinhoDto.toDto(carrinho));
     }
 
-    
     public Carrinho adicionarItem(ItemCarrinho itemCarrinho, int usuarioId){
       Produto produto = produtoRepository.findById(itemCarrinho.getProduto().getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Produto não encontrado"));
       Carrinho carrinho = carrinhoRepository.findByUsuario_Id(usuarioId).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Carrinho não encontrado para o usuário informado!"));
       List<Promocao> promocoes = carrinho.getPromocoes();
         
+      itemCarrinho.setCarrinho(carrinho);
         
         //verifica se existe alguma promoção para a categoria do produto e aplica o desconto caso existe alguma.
         Promocao promocao = promocaoRepository.findByCategorias_Id(produto.getCategoria().getId());

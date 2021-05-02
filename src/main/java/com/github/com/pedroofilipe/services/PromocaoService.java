@@ -13,10 +13,14 @@ import org.springframework.web.server.ResponseStatusException;
 @Service
 public class PromocaoService {
 
-    @Autowired
     private PromocaoRepository promocaoRepository;
-    @Autowired
     private CategoriaRepository categoriaRepository;
+    
+    @Autowired
+    public PromocaoService(PromocaoRepository promocaoRepository, CategoriaRepository categoriaRepository) {
+    	this.promocaoRepository = promocaoRepository;
+        this.categoriaRepository = categoriaRepository;
+    }
 
     public Promocao cadastrar(Promocao promocao){
 

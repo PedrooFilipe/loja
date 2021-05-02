@@ -14,20 +14,21 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/usuarios")
 public class UsuarioController {
-
+	
+	private UsuarioService usuarioService;
+	
 	@Autowired
-    UsuarioRepository usuarioRepository;
-	@Autowired
-	UsuarioService usuarioService;
+	public UsuarioController(UsuarioRepository usuarioRepository, UsuarioService usuarioService) {
+		this.usuarioService = usuarioService;
+	}
 
+	 @GetMapping("/buscar")
+    public ResponseEntity<?> buscar(Pageable pageable) {
+        return new ResponseEntity<>(usuarioService.procurarTodos(pageable), HttpStatus.OK);
+    }
+    
     @PostMapping("/cadastrar")
     public ResponseEntity<?> cadastrar(@RequestBody Usuario usuario) {
         return new ResponseEntity<>(UsuarioDto.toDto(usuarioService.cadastrar(usuario)), HttpStatus.CREATED);
     }
-    
-    @GetMapping("/buscar")
-    public ResponseEntity<?> buscar(Pageable pageable) {
-        return new ResponseEntity<>(usuarioService.procurarTodos(pageable), HttpStatus.OK);
-    }
-
 }
