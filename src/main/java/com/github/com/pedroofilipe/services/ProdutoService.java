@@ -2,14 +2,16 @@ package com.github.com.pedroofilipe.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.github.com.pedroofilipe.model.Produto;
 import com.github.com.pedroofilipe.repositories.ProdutoRepository;
 
+@Service
 public class ProdutoService {
 	
-	ProdutoRepository produtoRepository;
+	private ProdutoRepository produtoRepository;
 	
 	@Autowired
 	public ProdutoService(ProdutoRepository produtoRepository) {

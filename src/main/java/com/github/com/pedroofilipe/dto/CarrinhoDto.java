@@ -72,6 +72,4 @@ public class CarrinhoDto {
 		
 		return itensCarrinhoDto;
 	}
-	
-
 }

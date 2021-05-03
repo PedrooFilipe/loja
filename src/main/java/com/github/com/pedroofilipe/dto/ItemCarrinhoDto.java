@@ -47,7 +47,4 @@ public class ItemCarrinhoDto {
 	public static ItemCarrinhoDto toDto(ItemCarrinho itemCarrinho) {
 		return new ItemCarrinhoDto(itemCarrinho.getProduto().getId(), itemCarrinho.getProduto().getDescricao(), itemCarrinho.getQuantidade(), itemCarrinho.getValorTotal(), itemCarrinho.getValorDesconto(), itemCarrinho.getValorTotalDesconto());
 	}
-	
-	
-
 }

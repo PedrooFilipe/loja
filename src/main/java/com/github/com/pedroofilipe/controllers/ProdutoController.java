@@ -15,8 +15,8 @@ import org.springframework.web.server.ResponseStatusException;
 @RequestMapping("/produtos")
 public class ProdutoController {
 
-    ProdutoRepository produtoRepository;
-    ProdutoService produtoService;
+    private ProdutoRepository produtoRepository;
+    private ProdutoService produtoService;
 
     @Autowired
     public ProdutoController(ProdutoRepository produtoRepository, ProdutoService produtoService){

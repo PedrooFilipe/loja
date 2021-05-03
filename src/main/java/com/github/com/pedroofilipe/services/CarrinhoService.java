@@ -41,6 +41,10 @@ public class CarrinhoService {
     public Page<CarrinhoDto> listarTodos(Pageable pageable){
     	return carrinhoRepository.findAll(pageable).map(carrinho -> CarrinhoDto.toDto(carrinho));
     }
+    
+    public Carrinho procurarPorUsuario(int usuarioId) {
+    	return carrinhoRepository.findByUsuario_Id(usuarioId).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Carrinho não encontrado para o usuário informado"));
+    }
 
     public Carrinho adicionarItem(ItemCarrinho itemCarrinho, int usuarioId){
       Produto produto = produtoRepository.findById(itemCarrinho.getProduto().getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Produto não encontrado"));
@@ -107,8 +111,8 @@ public class CarrinhoService {
     } 
 
     public Carrinho removerItem(ItemCarrinho itemCarrinho){
+    	itemCarrinho = itemCarrinhoRepository.findById(itemCarrinho.getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "O carrinho informado não possui esse item!"));
     	Carrinho carrinho = carrinhoRepository.findByUsuario_Id(itemCarrinho.getCarrinho().getUsuario().getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Carrinho não encontrado para o usuário informado!"));
-    	itemCarrinho = itemCarrinhoRepository.findById(itemCarrinho.getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Carrinho não encontrado"));
     	List<Promocao> promocoesParaExclusao = new ArrayList<Promocao>();
     	Promocao promocao = new Promocao();
     	float valorTotalCarrinho = 0;

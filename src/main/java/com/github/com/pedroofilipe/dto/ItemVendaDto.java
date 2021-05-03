@@ -37,7 +37,4 @@ public class ItemVendaDto {
 	public static ItemVendaDto toDto(ItemVenda itemVenda) {
 		return new ItemVendaDto(itemVenda.getProduto().getId(), itemVenda.getProduto().getDescricao(), itemVenda.getQuantidade(), itemVenda.getValorTotal());
 	}
-	
-	
-
 }

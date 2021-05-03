@@ -31,7 +31,9 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 				"/categorias/cadastrar",
 				"/categorias/buscar",
 				"/vendas/buscar",
-				"/usuarios/buscar"
+				"/usuarios/buscar",
+				"/produtos/alterar/**",
+				"/carrinhos/buscar"
 				).hasRole("ADMINISTRADOR");
 	}
 	

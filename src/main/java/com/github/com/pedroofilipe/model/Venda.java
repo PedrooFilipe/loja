@@ -11,13 +11,18 @@ public class Venda {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Column(name= "valortotal")
     private float valorTotal;
+    @Column(name= "valortotaldesconto")
     private float valorTotalDesconto;
+    @Column(name= "valordesconto")
     private float valorDesconto;
+    @Column(name="itemvenda")
     @OneToMany(mappedBy = "venda")
     private List<ItemVenda> itemVendas;
     @OneToOne
     private Usuario usuario;
+    @Column(name="tipopagamento")
     private TipoPagamento tipoPagamento;
 
     public int getId() {

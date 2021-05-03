@@ -15,7 +15,9 @@ public class ItemCarrinho {
     private float quantidade;
     @Column(name = "valortotal")
     private float valorTotal;
+    @Column(name = "valortotaldesconto")
     private float valorTotalDesconto;
+    @Column(name = "valordesconto")
     private float valorDesconto;
     @ManyToOne
     @JsonBackReference
